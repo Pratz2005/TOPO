@@ -127,4 +127,3 @@ if __name__ == "__main__":
     # # Output the pie chart data (revenue breakdown)
     print("Revenue Breakdown Data:")
     print(pptx_revenue_breakdown)
-

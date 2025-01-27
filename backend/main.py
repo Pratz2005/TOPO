@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException
 import pandas as pd
+from fastapi.middleware.cors import CORSMiddleware
 
 # Load data
 unified_dataset = pd.read_pickle("unified_dataset.pkl")
@@ -11,6 +12,14 @@ file_specific_data = {
 }
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],  # Replace with your frontend's URL
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Endpoint: GET /api/data
 @app.get("/api/data")
