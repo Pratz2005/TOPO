@@ -15,13 +15,6 @@ const BarChart: React.FC<BarChartProps> = ({ data }) => {
         labels: data.map((row) => row.Quarter || 'N/A'),
         datasets: [
             {
-                label: 'Revenue ($)',
-                data: data.map((row) => row["Revenue (in $)"] || 0),
-                backgroundColor: 'rgba(54, 162, 235, 0.7)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1,
-            },
-            {
                 label: 'Memberships Sold',
                 data: data.map((row) => row["Memberships Sold"] || 0),
                 backgroundColor: 'rgba(255, 99, 132, 0.7)',

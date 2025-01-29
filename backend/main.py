@@ -1,13 +1,13 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Query
 import pandas as pd
 from fastapi.middleware.cors import CORSMiddleware
-from data_ingestion import DataIngestion  # Import the OOP-based data ingestion
+from data_ingestion import DataIngestion  
 
 # Initialize DataIngestion class
 data_handler = DataIngestion("../data")
 
 class DataAPI:
-    """Handles API requests for retrieving dataset information."""
+    """Handles API requests for retrieving dataset information with sorting and filtering."""
     
     def __init__(self):
         """Loads the unified dataset and file-specific datasets."""
@@ -27,15 +27,25 @@ class DataAPI:
             print(f"Warning: {file_path} not found. Returning empty DataFrame.")
             return pd.DataFrame()  # Return empty DataFrame if file not found
 
-    def get_full_data(self):
-        """Returns the unified dataset as a dictionary."""
-        return self.unified_dataset.fillna("N/A").to_dict(orient="records")
+    def _filter_and_sort_data(self, data, sort_by: str = None, order: str = "asc"):
+        """Applies sorting to the dataset."""
+        df = pd.DataFrame(data)
 
-    def get_file_specific_data(self, file_type: str):
-        """Returns data for a specific file type, or raises an error if not found."""
+        # Apply Sorting
+        if sort_by and sort_by in df.columns:
+            df = df.sort_values(by=sort_by, ascending=(order == "asc"))
+
+        return df.to_dict(orient="records")
+
+    def get_full_data(self, sort_by: str = None, order: str = "asc"):
+        """Returns the unified dataset with sorting."""
+        return self._filter_and_sort_data(self.unified_dataset.fillna("N/A").to_dict(orient="records"), sort_by, order)
+
+    def get_file_specific_data(self, file_type: str, sort_by: str = None, order: str = "asc"):
+        """Returns data for a specific file type with sorting."""
         if file_type not in self.file_specific_data:
             raise HTTPException(status_code=404, detail="File type not found")
-        return self.file_specific_data[file_type].fillna("N/A").to_dict(orient="records")
+        return self._filter_and_sort_data(self.file_specific_data[file_type].fillna("N/A").to_dict(orient="records"), sort_by, order)
 
 
 # Initialize FastAPI
@@ -51,12 +61,19 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Endpoint: GET /api/data (Unified Dataset)
+# Endpoint: GET /api/data (Unified Dataset with sorting)
 @app.get("/api/data")
-def get_full_data():
-    return data_api.get_full_data()
+def get_full_data(
+    sort_by: str = Query(None, description="Sort by field name"),
+    order: str = Query("asc", description="Sort order (asc/desc)")
+):
+    return data_api.get_full_data(sort_by, order)
 
-# Endpoint: GET /api/data/{file_type} (Specific Dataset)
+# Endpoint: GET /api/data/{file_type} (Specific Dataset with sorting)
 @app.get("/api/data/{file_type}")
-def get_file_specific_data(file_type: str):
-    return data_api.get_file_specific_data(file_type)
+def get_file_specific_data(
+    file_type: str,
+    sort_by: str = Query(None, description="Sort by field name"),
+    order: str = Query("asc", description="Sort order (asc/desc)")
+):
+    return data_api.get_file_specific_data(file_type, sort_by, order)
