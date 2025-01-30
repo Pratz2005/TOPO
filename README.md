@@ -57,7 +57,14 @@ Ensure you have the following installed:
 
    You can test the backend endpoints at http://127.0.0.1:8000/api/data for unified data, http://127.0.0.1:8000/api/{filetype}(for csv,json,pdf,pptx) and 
    http://127.0.0.1:8000/api/revenue for revenue distribution
-6. Access the application at:
+
+5. Start Frontend
+   ```bash
+   cd frontend
+   npm run dev
+   ```
+   
+7. Access the application at:
    ```
    http://localhost:3000 //(or if 3000 is in use it may access 3001, I have done checks for the CORS policy uptil 3002
    ```
