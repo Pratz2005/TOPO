@@ -81,7 +81,7 @@ data_api = DataAPI()  # Instance of DataAPI to handle API requests
 # Enable CORS for frontend interaction
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # Adjust to match frontend URL
+    allow_origins=["http://localhost:3000", "http://localhost:3001", "http://localhost:3002" ],  # Adjust to match frontend URL
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
