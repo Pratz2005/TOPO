@@ -33,7 +33,6 @@ Ensure you have the following installed:
    npm install
    ```
 
-   For backend
    '''bash
    cd backend
    python -m venv .venv // Create a Virtual Environment
