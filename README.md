@@ -2,9 +2,6 @@
 
 TOPO is a **data processing and visualization application** that extracts data from multiple sources (**CSV, JSON, PDF, PPTX**), presents it in tabular format, and provides **sorting, filtering, and chart visualization** options. Built with **FastAPI (backend) & Next.js (frontend)**.
 
-![TOPO Dashboard](https://github.com/Pratz2005/TOPO/blob/main/assets/dashboard.png)  
-*(Replace with an actual screenshot URL if needed)*
-
 ---
 
 ## 📂 Project Structure
