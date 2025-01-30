@@ -52,6 +52,7 @@ Ensure you have the following installed:
    Start Backend
    ```bash
    cd backend //if not in backend
+   python data_ingestion.py //run data_ingestion.py
    uvicorn main:app --reload
    ```
 
