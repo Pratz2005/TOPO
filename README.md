@@ -27,19 +27,25 @@ Ensure you have the following installed:
    cd TOPO
    ```
 2. Install dependencies:
-   For frontend
+   **For frontend:**
    ```bash
    cd frontend
    npm install
    ```
 
-   '''bash
+   
+   **For backend:**
+   ```bash
    cd backend
-   python -m venv .venv // Create a Virtual Environment
-   .venv\Scripts\activate // Windows
-   source .venv/bin/activate // MacOS
-   pip install -r requirements.txt //install dependicies
-   '''
+   python -m venv .venv  # Create a Virtual Environment
+   
+   # Activate Virtual Environment
+   .venv\Scripts\activate  # Windows
+   source .venv/bin/activate  # MacOS
+   
+   # Install dependencies
+   pip install -r requirements.txt
+   ```
    
 4. Start the development server:
    Start Backend
