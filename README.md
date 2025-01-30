@@ -3,6 +3,9 @@
 ## Overview
 TOPO is an application designed to ingest and manipulate data from multiple formats, providing an interactive local visualization of the data and exposing it as REST API endpoints. The project follows Object-Oriented Programming (OOP) principles to ensure clean, maintainable, and modular code. Additionally, it incorporates rigorous testing to validate functionality and reliability.
 
+The frontend is built using **Next.js** and **Tailwind CSS**, providing a fast and responsive user interface. The backend is implemented with **FastAPI**, ensuring high-performance API interactions and efficient data processing.
+
+
 Key Features:
 - Data ingestion and processing from multiple formats.
 - Interactive data visualization.
@@ -13,7 +16,7 @@ Key Features:
 ## Setup Instructions
 ### Prerequisites
 Ensure you have the following installed:
-- Next.js (for frontend)
+- Node.js (for frontend)
 - Python (for backend)
 - Package managers: npm/yarn for frontend, pip for backend
 
