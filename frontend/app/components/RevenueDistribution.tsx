@@ -25,7 +25,7 @@ const RevenueDistribution = () => {
 
     return (
         <div className="p-6">
-            {loading ? <p className="text-white">Loading revenue breakdown...</p> : <PieChart revenueData={revenueData} />}
+            {loading ? <p className="text-white">Loading revenue distribution...</p> : <PieChart revenueData={revenueData} />}
         </div>
     );
 };

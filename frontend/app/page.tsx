@@ -17,7 +17,7 @@ const Home = () => {
         <div className="flex h-screen bg-gray-100">
             {/* Sidebar */}
             <div className="w-64 min-w-[16rem] bg-gradient-to-b from-blue-500 to-purple-500 text-white p-5 fixed h-screen shadow-lg">
-                <h2 className="text-lg font-bold mb-4 tracking-wide">📊 Data Types</h2>
+                <h2 className="text-lg font-bold mb-4 tracking-wide">📊 Data</h2>
                 <ul className="space-y-2">
                     {["unified", "csv", "json", "pdf", "pptx", "revenue"].map((type) => (
                         <li
