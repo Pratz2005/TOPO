@@ -21,6 +21,7 @@ Ensure you have the following installed:
 - Node.js (for frontend)
 - Python (for backend)
 - Package managers: npm/yarn for frontend, pip for backend
+- Additional Dependicies - environment variables, API keys, charting libraries such as Chart.js, Recharts
 
 ### Steps to Run Locally
 1. Clone the repository:
