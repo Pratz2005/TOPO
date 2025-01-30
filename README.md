@@ -5,6 +5,8 @@ TOPO is an application designed to ingest and manipulate data from multiple form
 
 The frontend is built using **Next.js** and **Tailwind CSS**, providing a fast and responsive user interface. The backend is implemented with **FastAPI**, ensuring high-performance API interactions and efficient data processing.
 
+You can sort the data according to the headings in the table by double clicking the headings of the table then click the arrow for ascending or descending sorting
+
 
 Key Features:
 - Data ingestion and processing from multiple formats.
