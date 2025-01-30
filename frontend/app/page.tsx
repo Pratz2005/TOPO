@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import FileDataPage from './FileDataPage';
 import DataTable from './DataTable';
+import RevenueDistribution from './components/RevenueDistribution';
 
 interface DataRow {
     [key: string]: string | number | null;
@@ -18,7 +19,7 @@ const Home = () => {
             <div className="w-64 min-w-[16rem] bg-gradient-to-b from-blue-500 to-purple-500 text-white p-5 fixed h-screen shadow-lg">
                 <h2 className="text-lg font-bold mb-4 tracking-wide">📊 Data Types</h2>
                 <ul className="space-y-2">
-                    {["unified", "csv", "json", "pdf", "pptx"].map((type) => (
+                    {["unified", "csv", "json", "pdf", "pptx", "revenue"].map((type) => (
                         <li
                             key={type}
                             onClick={() => setSelectedDataType(type)}
@@ -34,7 +35,9 @@ const Home = () => {
 
             {/* Main Content Area */}
             <div className="ml-64 flex-1 p-6 overflow-auto">
-                {isFileDataPage ? (
+                {selectedDataType === "revenue" ? (
+                    <RevenueDistribution/ >
+                ) : selectedDataType === 'pdf' || selectedDataType === 'pptx' ? (
                     <FileDataPage fileType={selectedDataType} />
                 ) : (
                     <DataTable fileType={selectedDataType} />

@@ -11,9 +11,16 @@ export const fetchUnifiedData = async (sortBy: string = '', sortOrder: string = 
 };
 
 // Fetch File-Specific Data with Sorting
+
+
 export const fetchFileSpecificData = async (fileType: string, sortBy: string = '', sortOrder: string = 'asc') => {
     const response = await axios.get(`${API_BASE_URL}/data/${fileType}`, {
         params: sortBy ? { sort_by: sortBy, order: sortOrder } : {},
     });
+    return response.data;
+};
+
+export const fetchRevenueBreakdown = async () => {
+    const response = await axios.get(`${API_BASE_URL}/data/revenue`);
     return response.data;
 };

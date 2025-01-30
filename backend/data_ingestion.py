@@ -84,7 +84,7 @@ class DataIngestion:
 
     def clean_and_merge_data(self, csv_data, json_data, pdf_data, pptx_data):
         """Cleans and merges all data sources into a unified dataset."""
-        pptx_df = pd.DataFrame(pptx_data[1:], columns=pptx_data[0])
+        pptx_df = pptx_data.copy()
 
         csv_data.fillna("N/A", inplace=True)
         json_data.fillna("N/A", inplace=True)
@@ -106,23 +106,34 @@ class DataIngestion:
             "csv": csv_data,
             "json": json_data,
             "pdf": pdf_data,
-            "pptx": pd.DataFrame(pptx_table_data[1:], columns=pptx_table_data[0])
+            "pptx": pptx_table_data,
         }
 
+        revenue_breakdown_df = pd.DataFrame(list(pptx_revenue_breakdown.items()), columns=["Category", "Percentage"])
+
         # Save datasets as pickle files
+        print("PPTX Table Data:", pptx_table_data)
+
         unified_dataset = self.clean_and_merge_data(csv_data, json_data, pdf_data, pptx_table_data)
         unified_dataset.to_pickle("unified_dataset.pkl")
 
         for key, df in file_specific_data.items():
             df.to_pickle(f"{key}_data.pkl")
 
-        print("Unified Dataset Processed & Saved!")
-        print(unified_dataset)
+        # Debugging: Print the exact location of the revenue breakdown pickle file
 
-        print("Revenue Breakdown Data:")
-        print(pptx_revenue_breakdown)
+        backend_dir = os.path.dirname(os.path.abspath(__file__))  # Get directory of script
+        revenue_pickle_path = os.path.join(backend_dir, "revenue_breakdown.pkl")
+
+
+        print(f"Saving revenue_breakdown.pkl at: {revenue_pickle_path}")
+        # Save the revenue breakdown
+        revenue_breakdown_df.to_pickle(revenue_pickle_path)
+
+        print(f"Revenue Breakdown Data Saved at: {revenue_pickle_path}")
 
         return unified_dataset, file_specific_data, pptx_revenue_breakdown
+
 
 
 # Execute the ingestion process when script runs
