@@ -98,11 +98,8 @@ Ensure you have the following installed:
    - Data files (CSV, JSON, PDF, PPTX) follow a structured format.  
    - Columns like `Date`, `Membership_ID`, `Revenue` exist in all datasets.
 
-3. **Users Interact via the Frontend UI**  
+2. **Users Interact via the Frontend UI**  
    - The backend serves API responses; there’s **no separate admin dashboard**.
-
-4. **Data Extraction from PPTX & PDFs Works Without Manual Fixes**  
-   - Tables in PDFs/PPTX are structured for correct parsing.
 
 ---
 
